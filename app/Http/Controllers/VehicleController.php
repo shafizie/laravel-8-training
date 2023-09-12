@@ -12,7 +12,7 @@ class VehicleController extends Controller
     public function index()
     {
         //Kaedah memanggil table
-        $vehicles = Vehicle::get();
+        $vehicles = Vehicle::where('deleted_at', null)->get();
         // $id = 3;
         // $vehicles = DB::select("select * from vehicle where id = " . $id);
         // $vehicles = Vehicle::getVehicleDetail($id);
