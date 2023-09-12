@@ -102,4 +102,20 @@ class VehicleController extends Controller
 
 
     }
+
+    public function delete($id)
+    {
+        Vehicle::where('id', $id)->delete();
+        return redirect(route('vehicle.index'))->withSuccess('Vehicle Data Successfully Deleted!');
+    }
+
+    public function softDelete($id)
+    {
+        $input = [];
+        $input['status'] = 0;
+        $input['deleted_at'] = now();
+
+        Vehicle::where('id', $id)->update($input);
+        return redirect(route('vehicle.index'))->withSuccess('Vehicle Data Successfully Deleted!');
+    }
 }

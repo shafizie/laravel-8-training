@@ -34,7 +34,14 @@
                                 <td>{{ $row->type }}</td>
                                 <td>{{ $row->year }}</td>
                                 <td>
-                                    <a href="{{ route('vehicle.edit', $row->id) }}" class="btn btn-warning">Edit</a>
+                                    @if($row->status == 0)
+                                        <button class="btn btn-warning" disabled>Edit</button>
+                                        <button class="btn btn-danger" disabled>Delete</button>
+                                    @else
+                                        <a href="{{ route('vehicle.edit', $row->id) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('vehicle.delete.soft', $row->id) }}" class="btn btn-danger">Delete</a>
+                                    @endif
+
                                 </td>
                             </tr>
                             @endforeach
