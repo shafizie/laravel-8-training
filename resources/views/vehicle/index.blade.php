@@ -28,7 +28,7 @@
                         <tbody>
                             @foreach ($vehicles as $row)
                             <tr>
-                                <td>{{ $row->id }}.</td>
+                                <td>{{ $loop->iteration }}.</td>
                                 <td>{{ $row->brand }}</td>
                                 <td>{{ $row->model }}</td>
                                 <td>{{ $row->type }}</td>
@@ -38,8 +38,8 @@
                                         <button class="btn btn-warning" disabled>Edit</button>
                                         <button class="btn btn-danger" disabled>Delete</button>
                                     @else
-                                        <a href="{{ route('vehicle.edit', $row->id) }}" class="btn btn-warning">Edit</a>
-                                        <a href="{{ route('vehicle.delete.soft', $row->id) }}" class="btn btn-danger">Delete</a>
+                                        <a href="{{ route('vehicle.edit', Crypt::encrypt($row->id)) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('vehicle.delete.soft', Crypt::encrypt($row->id)) }}" class="btn btn-danger">Delete</a>
                                     @endif
 
                                 </td>

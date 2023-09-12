@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     <h2>Car Information Form</h2>
-                    <form action="@if($edit){{ route('vehicle.update', $vehicle->id) }}
+                    <form action="@if($edit){{ route('vehicle.update', Crypt::encrypt($vehicle->id)) }}
                                   @else {{ route('vehicle.submit') }}
                                   @endif" method="post">
                         <!--csrf - Cross-Site Request Forgery (bertujuan untuk)-->

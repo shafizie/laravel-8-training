@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 class VehicleController extends Controller
 {
@@ -11,6 +13,10 @@ class VehicleController extends Controller
     {
         //Kaedah memanggil table
         $vehicles = Vehicle::get();
+        // $id = 3;
+        // $vehicles = DB::select("select * from vehicle where id = " . $id);
+        // $vehicles = Vehicle::getVehicleDetail($id);
+        // dd($vehicles);
         //$test1 = 'Test1';
         //$vehicles = Vehicle::where('id', 1)->get();
 
@@ -63,7 +69,16 @@ class VehicleController extends Controller
 
         //dd($input);
 
-        Vehicle::insert($input);
+        DB::beginTransaction();
+        try{
+            Vehicle::insert($input);
+            DB::commit();
+        } catch (\Exception $ex) {
+            dd($ex);
+            DB::rollBack();
+        }
+
+
 
         //get ID dari data yang baharu masuk
         //$vehiclesId = Vehicle::insertGetId($input);
@@ -78,16 +93,18 @@ class VehicleController extends Controller
         return redirect(route('vehicle.index'))->withSuccess('Vehicle Data Successfully Insert!');
     }
 
-    public function edit($id)
+    public function edit($encrypId)
     {
+        $id = Crypt::decrypt($encrypId);
         $edit = true;
         $vehicle = Vehicle::where('id', $id)->first();
         //dd($vehicle);
         return view('vehicle.form', compact('vehicle','edit'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $encrypId)
     {
+        $id = Crypt::decrypt($encrypId);
         $input = [];
         $input['brand'] = $request->brand;
         $input['model'] = $request->model;
@@ -103,14 +120,16 @@ class VehicleController extends Controller
 
     }
 
-    public function delete($id)
+    public function delete($encrypId)
     {
+        $id = Crypt::decrypt($encrypId);
         Vehicle::where('id', $id)->delete();
         return redirect(route('vehicle.index'))->withSuccess('Vehicle Data Successfully Deleted!');
     }
 
-    public function softDelete($id)
+    public function softDelete($encrypId)
     {
+        $id = Crypt::decrypt($encrypId);
         $input = [];
         $input['status'] = 0;
         $input['deleted_at'] = now();
