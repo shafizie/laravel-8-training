@@ -55,3 +55,7 @@
     </div>
 </main>
 @endsection
+
+@push('namaPage')
+User Details
+@endpush
