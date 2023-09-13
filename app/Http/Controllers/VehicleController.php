@@ -12,7 +12,11 @@ class VehicleController extends Controller
     public function index()
     {
         //Kaedah memanggil table
-        $vehicles = Vehicle::where('deleted_at', null)->get();
+        $vehicles = Vehicle::get();
+        // $vehicles = Vehicle::where('deleted_at', null)->get();
+        $linkactive = false;
+        $linkactiveVehicle = true;
+        $linkactiveVehicleList = true;
         // $id = 3;
         // $vehicles = DB::select("select * from vehicle where id = " . $id);
         // $vehicles = Vehicle::getVehicleDetail($id);
@@ -47,14 +51,17 @@ class VehicleController extends Controller
         //exit untuk paparan yang terakhir
         //exit();
 
-        return view('vehicle.index', compact('vehicles'));
+        return view('vehicle.index', compact('vehicles','linkactive','linkactiveVehicle','linkactiveVehicleList'));
         //return view('vehicle.index', compact('vehicles','test1'));
     }
 
     public function create()
     {
         $edit = false;
-        return view('vehicle.form', compact('edit'));
+        $linkactive = false;
+        $linkactiveVehicle = true;
+        $linkactiveVehicleList = true;
+        return view('vehicle.form', compact('edit','linkactive','linkactiveVehicle','linkactiveVehicleList'));
     }
 
     public function submit(Request $request)
@@ -97,9 +104,12 @@ class VehicleController extends Controller
     {
         $id = Crypt::decrypt($encryptId);
         $edit = true;
+        $linkactive = false;
+        $linkactiveVehicle = true;
+        $linkactiveVehicleList = true;
         $vehicle = Vehicle::where('id', $id)->first();
         //dd($vehicle);
-        return view('vehicle.form', compact('vehicle','edit'));
+        return view('vehicle.form', compact('vehicle','edit','linkactive','linkactiveVehicle','linkactiveVehicleList'));
     }
 
     public function update(Request $request, $encryptId)

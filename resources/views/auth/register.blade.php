@@ -8,17 +8,17 @@
         <meta name="author" content="" />
         <title>Register - SB Admin Pro</title>
         <link href="css/styles.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+        <link rel="icon" type="image/x-icon" href="assets/img/faviconuutm.ico" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-primary">
+    <body class="bg-primary" background="background8.jpg">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container-xl px-4">
                         <div class="row justify-content-center">
-                            <div class="col-xl-8 col-lg-9">
+                            <div class="col-xl-5 col-lg-6 col-md-8 col-sm-11">
                                 <!-- Social registration form-->
                                 <div class="card my-5">
                                     <div class="card-body p-5 text-center">
@@ -115,7 +115,7 @@
                 <footer class="footer-admin mt-auto footer-dark">
                     <div class="container-xl px-4">
                         <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+                            <div class="col-md-6 small">Copyright © 2023 Universiti Teknologi Malaysia</div>
                             <div class="col-md-6 text-md-end small">
                                 <a href="#!">Privacy Policy</a>
                                 &middot;

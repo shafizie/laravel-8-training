@@ -23,6 +23,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $linkactive = true;
+        $linkactiveVehicle = false;
+        $linkactiveVehicleList = false;
+        return view('home', compact('linkactive','linkactiveVehicle','linkactiveVehicleList'));
+    }
+
+    public function profile()
+    {
+        $linkactive = false;
+        $linkactiveVehicle = false;
+        $linkactiveVehicleList = false;
+        return view('profile', compact('linkactive','linkactiveVehicle','linkactiveVehicleList'));
     }
 }

@@ -8,11 +8,11 @@
         <meta name="author" content="" />
         <title>Login - SB Admin Pro</title>
         <link href="css/styles.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+        <link rel="icon" type="image/x-icon" href="assets/img/faviconuutm.ico" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-primary">
+    <body class="bg-primary" background="background8.jpg">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -28,7 +28,7 @@
                                         <a class="btn btn-icon btn-github mx-1" href="#!"><i class="fab fa-github fa-fw fa-sm"></i></a>
                                         <a class="btn btn-icon btn-google mx-1" href="#!"><i class="fab fa-google fa-fw fa-sm"></i></a>
                                         <a class="btn btn-icon btn-twitter mx-1" href="#!"><i class="fab fa-twitter fa-fw fa-sm text-white"></i></a> -->
-                                        <img src="utm-logo.svg" width="150rem" height="70rem" alt="Avatar">
+                                        <img src="utm-logo.svg" width="150rem" height="50rem" alt="Avatar">
                                     </div>
                                     <hr class="my-0" />
                                     <div class="card-body p-5">
@@ -99,7 +99,7 @@
                 <footer class="footer-admin mt-auto footer-dark">
                     <div class="container-xl px-4">
                         <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+                            <div class="col-md-6 small">Copyright © 2023 Universiti Teknologi Malaysia</div>
                             <div class="col-md-6 text-md-end small">
                                 <a href="#!">Privacy Policy</a>
                                 &middot;
