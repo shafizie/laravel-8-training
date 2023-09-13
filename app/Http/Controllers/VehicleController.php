@@ -93,18 +93,18 @@ class VehicleController extends Controller
         return redirect(route('vehicle.index'))->withSuccess('Vehicle Data Successfully Insert!');
     }
 
-    public function edit($encrypId)
+    public function edit($encryptId)
     {
-        $id = Crypt::decrypt($encrypId);
+        $id = Crypt::decrypt($encryptId);
         $edit = true;
         $vehicle = Vehicle::where('id', $id)->first();
         //dd($vehicle);
         return view('vehicle.form', compact('vehicle','edit'));
     }
 
-    public function update(Request $request, $encrypId)
+    public function update(Request $request, $encryptId)
     {
-        $id = Crypt::decrypt($encrypId);
+        $id = Crypt::decrypt($encryptId);
         $input = [];
         $input['brand'] = $request->brand;
         $input['model'] = $request->model;
@@ -120,21 +120,42 @@ class VehicleController extends Controller
 
     }
 
-    public function delete($encrypId)
+    public function delete($encryptId)
     {
-        $id = Crypt::decrypt($encrypId);
+        $id = Crypt::decrypt($encryptId);
         Vehicle::where('id', $id)->delete();
         return redirect(route('vehicle.index'))->withSuccess('Vehicle Data Successfully Deleted!');
     }
 
-    public function softDelete($encrypId)
+    public function softDelete($encryptId)
     {
-        $id = Crypt::decrypt($encrypId);
+        $id = Crypt::decrypt($encryptId);
         $input = [];
         $input['status'] = 0;
         $input['deleted_at'] = now();
 
         Vehicle::where('id', $id)->update($input);
         return redirect(route('vehicle.index'))->withSuccess('Vehicle Data Successfully Deleted!');
+    }
+
+    public function ajaxDelete($encryptId)
+    {
+        $id = Crypt::decrypt($encryptId);
+
+        $status = 0;
+        $input = [];
+        $input['status'] = 0;
+        $input['deleted_at'] = now();
+
+        DB::beginTransaction();
+        try {
+            $status = 1;
+            Vehicle::where('id', $id)->update($input);
+            DB::commit();
+        } catch (\Exception $ex) {
+            DB::rollBack();
+        }
+
+        return response()->json($status);
     }
 }

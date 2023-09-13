@@ -14,7 +14,7 @@
                             {{ Session::get('success') }}
                         </div>
                     @endif
-                    <table class="table table-bordered" style="border: 1px solid black; text-align: center;">
+                    <table class="table table-bordered data-table" style="border: 1px solid black; text-align: center;">
                         <thead>
                         <tr>
                             <th>No</th>
@@ -38,8 +38,9 @@
                                         <button class="btn btn-warning" disabled>Edit</button>
                                         <button class="btn btn-danger" disabled>Delete</button>
                                     @else
-                                        <a href="{{ route('vehicle.edit', Crypt::encrypt($row->id)) }}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ route('vehicle.edit', Crypt::encrypt($row->id)) }}" class="btn btn-primary">Edit</a>
                                         <a href="{{ route('vehicle.delete.soft', Crypt::encrypt($row->id)) }}" class="btn btn-danger">Delete</a>
+                                        <a href="javascript:void(0)" id="delete-user" data-url="{{ route('vehicle.delete.ajax', Crypt::encrypt($row->id)) }}" class="btn btn-warning">AJAX Delete</a>
                                     @endif
 
                                 </td>
@@ -53,4 +54,39 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        /*------------------------------------------
+        --------------------------------------------
+        When click user on Show Button
+        --------------------------------------------
+        --------------------------------------------*/
+        $('body').on('click', '#delete-user', function () {
+
+          var userURL = $(this).data('url');
+          var trObj = $(this);
+
+          if(confirm("Are you sure you want to remove this user?") == true){
+                $.ajax({
+                    url: userURL,
+                    type: 'DELETE',
+                    dataType: 'json',
+                    success: function(data) {
+                        alert(data.success);
+                        trObj.parents("tr").remove();
+                    }
+                });
+          }
+
+       });
+
+    });
+</script>
 @endsection
